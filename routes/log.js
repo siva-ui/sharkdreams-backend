@@ -6,7 +6,8 @@ const userLog = mongoose.model('logmodel')
 const jwt = require('jsonwebtoken')
 const checkauth = require('../middleware/checkauth')
 const shortId = require('shortid')
-
+///apis///
+///post api///
 router.post('/logsave', checkauth, (req, res) => {
     var logDetails = new userLog({
         userId: req.body.userId,
@@ -34,10 +35,9 @@ router.post('/logsave', checkauth, (req, res) => {
             return res.send(statusObj)
         }
     })
-    
 })
 
-
+///get api///
 router.get('/loggetbyid/:id', checkauth, (req, res) => {
     userLog.find({userId: req.params.id}).then(data => {
         if(data) {
@@ -60,6 +60,7 @@ router.get('/loggetbyid/:id', checkauth, (req, res) => {
     })
 })
 
+///delete api///
 router.delete('/deletelogbyid/:id', checkauth, (req, res) => {
     userLog.deleteOne({logId: req.params.id}).then(data => {
         if(data) {
