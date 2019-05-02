@@ -22,7 +22,6 @@ router.post('/signup', (req, res) => {
         return res.send(statusObject)
         }
         bcryptjs.hash(req.body.password, 10).then(hash => {
-            console.log(req.body)
             var userDetails = new userModel({
                 name: req.body.name,
                 userName: req.body.userName,
