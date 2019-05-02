@@ -8,7 +8,6 @@ const path = require('path')
 var app = express()
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded ({extended:false}));
-
 app.use((req,res,next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -16,16 +15,11 @@ app.use((req,res,next) => {
 
     next();
 })
-
-
-
 ////////////router import///////////
-
 app.use('/user', userRouter)
 app.use('/log', logRouter)
 
-
-
+//////mongoose connection//////
 mongoose.connection.on('error', function(err){
     if(err){
         console.log(err)
